@@ -2,62 +2,105 @@ import React, { Component } from "react";
 import styles from "./index.css";
 
 class Canvas extends Component {
+
+    state = {
+        isDraw: false,
+        canvas: document.getElementById("drawingCanvas"),
+        pointSet: []
+    }
+
     constructor(props) {
         super(props)
         this.initCanvas = this.initCanvas.bind(this)
     }
-    initCanvas() {
-        const {
-            x0,//原点坐标
-            y0,
-            r,// 半径
-            lineWidth, // 画笔宽度
-            strokeStyle, //画笔颜色
-            LinearGradientColor1, //起始渐变颜色
-            LinearGradientColor2, //结束渐变颜色
-            Percentage,// 进度百分比
-        } = this.props
-        let ele = document.getElementById("time_graph_canvas")
-        let circle = ele.getContext("2d");
-        //创建背景圆
-        circle.lineWidth = lineWidth;
-        circle.strokeStyle = strokeStyle;
-        circle.lineCap = 'round';
-        circle.beginPath();//开始一个新的路径
-        circle.arc(x0, y0, r, 0, 2 * Math.PI, false);///用于绘制圆弧context.arc(x坐标，y坐标，半径，起始角度，终止角度，顺时针/逆时针)
-        circle.stroke();//对当前路径进行描边
-    }
 
     componentDidMount() {
-        this.initCanvas()
+        this.initCanvas();
     }
-    componentDidUpdate() {
-        this.initCanvas()
+
+    initCanvas() {
+        document.getElementById("drawingCanvas").addEventListener("mousedown", this.mouseDown, false);
+        document.getElementById("drawingCanvas").addEventListener("mousemove", this.mouseMove, false);
+        document.getElementById("drawingCanvas").addEventListener("mouseup", this.mouseUp, false);
+        document.getElementById("drawingCanvas").addEventListener("mouseleave", this.mouseLeave, false);
     }
+
+    mouseDown = ( event ) => {
+        console.log("down");
+        let cxt = document.getElementById("drawingCanvas").getContext("2d");
+        cxt.lineWidth = 1;
+        if(!this.state.isDraw){
+            this.setState({isDraw: true});
+            let x = event.offsetX;
+            let y = event.offsetY;
+            console.log(x,y);
+            cxt.beginPath();
+            this.state.pointSet.push([x, y]);
+            let newPointSet = this.state.pointSet;
+            this.setState({
+                pointSet: newPointSet
+            })
+        }
+    }
+
+    mouseMove = (event) => {
+        console.log("move");
+        let cxt = document.getElementById("drawingCanvas").getContext("2d");
+        if(this.state.isDraw) {
+            let x = event.offsetX;
+            let y = event.offsetY;
+            cxt.lineWidth = 1;
+            cxt.lineTo(x, y);
+            cxt.stroke();
+            console.log(x, y);
+            this.state.pointSet.push([x, y]);
+            let newPointSet = this.state.pointSet;
+            this.setState({
+                pointSet: newPointSet
+            })
+        }
+    }
+
+    mouseUp = (event) => {
+        console.log("up");
+        let cxt = document.getElementById("drawingCanvas").getContext("2d");
+        if(this.state.isDraw) {
+            cxt.closePath();
+            this.setState({isDraw: false});
+        }
+        console.log(this.state.pointSet);
+    }
+
+    mouseLeave = (event) => {
+        console.log("leave");
+        let cxt = document.getElementById("drawingCanvas").getContext("2d");
+        if(this.state.isDraw) {
+            cxt.closePath();
+            this.setState({isDraw: false});
+        }
+    }
+
     static defaultProps = {
-        canvasWidth: 160,// 画布宽度
-        canvasHeight: 160,// 画布高度
-        x0: 80,
-        y0: 80,
-        r: 72,
-        lineWidth: 16,
-        strokeStyle: 'rgba(248, 248, 248, 1)',
-        LinearGradientColor1: '#3EECED',
-        LinearGradientColor2: '#499BE6'
+        lineWidth: 2,
+        strokeStyle: 'rgb(248, 248, 248)',
     }
+
+    reshow = ( path ) => {
+        let cxt = document.getElementById("drawingCanvas").getContext("2d");
+        cxt.beginPath();
+        for(let i=0;i<path.length;i++){
+            let cxt = document.getElementById("drawingCanvas").getContext("2d");
+            cxt.lineTo(path[i][0], path[i][1]);
+            cxt.stroke();
+        }
+    }
+
     render() {
-        const { width, height, canvasWidth, canvasHeight } = this.props
         return (
-            <div>
-                <div className={styles.text}>
-                    laallalaalal
-                </div>
-                <canvas id="time_graph_canvas" width={canvasWidth} height={canvasHeight}></canvas>
-                <div>
-                    laallalaalal
-                </div>
+            <div id={"main"}>
+                <canvas id="drawingCanvas" width={800} height={600}></canvas>
             </div>
-        )
+        );
     }
 }
 

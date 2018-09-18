@@ -1,8 +1,13 @@
-.board {
-    background-color: aqua;
-    width: 1000px;
-    height: 800px;
-}
-.text {
+#text{
     color: aqua;
+}
+.text{
+    color: aqua;
+}
+#main{
+    display: flex;
+    justify-content: center;
+}
+#drawingCanvas{
+    border: cadetblue 1px solid;
 }
