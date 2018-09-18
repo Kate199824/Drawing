@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import styles from "./index.css";
+import { uploadDrawing } from "../../services/drawingService";
 
 class Canvas extends Component {
 
@@ -61,12 +62,13 @@ class Canvas extends Component {
         }
     }
 
-    mouseUp = (event) => {
+    mouseUp = () => {
         console.log("up");
         let cxt = document.getElementById("drawingCanvas").getContext("2d");
         if(this.state.isDraw) {
             cxt.closePath();
             this.setState({isDraw: false});
+            this.onUpload(this.state.pointSet);
         }
         console.log(this.state.pointSet);
     }
@@ -77,6 +79,7 @@ class Canvas extends Component {
         if(this.state.isDraw) {
             cxt.closePath();
             this.setState({isDraw: false});
+            this.onUpload(this.state.pointSet);
         }
     }
 
@@ -93,6 +96,10 @@ class Canvas extends Component {
             cxt.lineTo(path[i][0], path[i][1]);
             cxt.stroke();
         }
+    }
+
+    onUpload = async (points) => {
+        await uploadDrawing(points);
     }
 
     render() {
