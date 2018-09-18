@@ -1,10 +1,11 @@
 import React, { Component } from "react";
+import Canvas from "../../component/Canvas/index";
 
 class Home extends Component {
     render() {
 
         return (
-            <div>Home</div>
+            <div><Canvas/></div>
         );
     }
 }

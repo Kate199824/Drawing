@@ -1,9 +1,10 @@
 import React from "react";
 import Loadable from "react-loadable";
+import LoadingSpin from "../LoadingSpin/index";
 
-export default function(component) {
+export default function(loader) {
     return Loadable({
-        component,
-        loading: <div>Loading</div>
+        loader,
+        loading: LoadingSpin
     });
 }
