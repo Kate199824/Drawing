@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styles from "./index.css";
-import { uploadDrawing } from "../../services/drawingService";
+import { uploadDrawing } from "../../services/drawingService.js";
 
 class Canvas extends Component {
 
@@ -23,13 +23,13 @@ class Canvas extends Component {
         document.getElementById("drawingCanvas").addEventListener("mousedown", this.mouseDown, false);
         document.getElementById("drawingCanvas").addEventListener("mousemove", this.mouseMove, false);
         document.getElementById("drawingCanvas").addEventListener("mouseup", this.mouseUp, false);
-        document.getElementById("drawingCanvas").addEventListener("mouseleave", this.mouseLeave, false);
     }
 
     mouseDown = ( event ) => {
         console.log("down");
         let cxt = document.getElementById("drawingCanvas").getContext("2d");
         cxt.lineWidth = 1;
+        cxt.strokeStyle = "#000000";
         if(!this.state.isDraw){
             this.setState({isDraw: true});
             let x = event.offsetX;
@@ -62,24 +62,17 @@ class Canvas extends Component {
         }
     }
 
-    mouseUp = () => {
+    mouseUp = async () => {
         console.log("up");
         let cxt = document.getElementById("drawingCanvas").getContext("2d");
         if(this.state.isDraw) {
             cxt.closePath();
-            this.setState({isDraw: false});
-            this.onUpload(this.state.pointSet);
-        }
-        console.log(this.state.pointSet);
-    }
-
-    mouseLeave = (event) => {
-        console.log("leave");
-        let cxt = document.getElementById("drawingCanvas").getContext("2d");
-        if(this.state.isDraw) {
-            cxt.closePath();
-            this.setState({isDraw: false});
-            this.onUpload(this.state.pointSet);
+            let res = await uploadDrawing( this.state.pointSet );
+            this.setState({
+                isDraw: false,
+                pointSet: []
+            })
+            this.reshow(res.parsedPoints);
         }
     }
 
@@ -88,18 +81,15 @@ class Canvas extends Component {
         strokeStyle: 'rgb(248, 248, 248)',
     }
 
-    reshow = ( path ) => {
+    reshow = async ( path ) => {
         let cxt = document.getElementById("drawingCanvas").getContext("2d");
+        cxt.strokeStyle = "#82b5f6";
         cxt.beginPath();
         for(let i=0;i<path.length;i++){
             let cxt = document.getElementById("drawingCanvas").getContext("2d");
             cxt.lineTo(path[i][0], path[i][1]);
             cxt.stroke();
         }
-    }
-
-    onUpload = async (points) => {
-        await uploadDrawing(points);
     }
 
     render() {

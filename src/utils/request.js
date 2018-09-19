@@ -69,7 +69,7 @@ export default async function request(url, options) {
     if(e.response.status===401){
       const from=encodeURIComponent(window.location.pathname);
       window.location.href=`/login?from=${from}`;
-    }else if(e.response.status===403&&judgeLogin()){
+    }else if(e.response.status===403){
       window.location.href="/403";
     }else {
       throw e;
