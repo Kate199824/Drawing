@@ -1,0 +1,73 @@
+.board--main{
+    border-radius: 3px;
+    box-shadow: 0 3px 15px rgba(94, 188, 244, 0.4);
+    background-color: white;
+    width: 240px;
+    height: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.board--title{
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.align-x {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.board--title--point{
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: rgba(78,175,231,0.6);
+    margin-top: 6px;
+    margin-left: 6px;
+    margin-right: 5px;
+}
+
+.board--title--text{
+    font-size: 15px;
+    color: rgba(104,104,104,0.8);
+}
+
+.board--result{
+
+}
+
+.board--judge{
+    height: 60px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+}
+
+.board--result--text {
+    text-align: center;
+    font-size: 28px;
+    color: rgba(35,35,35,0.7);
+}
+
+.board--judge--button {
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 2px 2px rgba(94, 188, 244, 0.4);
+    text-align: center;
+}
+
+.board--judge--button:hover {
+   background-color: rgba(94,188,244,0.05);
+}
+
+.board--judge--button--text {
+    position: relative;
+    top: 20px;
+    text-align: center;
+    font-size: 15px;
+    color: rgba(104,104,104,0.8);
+}

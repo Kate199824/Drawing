@@ -1,0 +1,12 @@
+.home--main {
+    display: flex;
+    justify-content: center;
+}
+.home--middle {
+
+}
+.home--right {
+    margin-left: 80px;
+    display: flex;
+    flex-direction: column;
+}

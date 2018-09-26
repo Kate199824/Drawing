@@ -1,13 +1,24 @@
-#text{
-    color: aqua;
-}
-.text{
-    color: aqua;
-}
 #main{
     display: flex;
     justify-content: center;
 }
+
+#align {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 #drawingCanvas{
-    border: cadetblue 1px solid;
+    width: 800px;
+    height: 600px;
+    box-shadow: 0 3px 15px rgba(103,178,246,0.6);
+}
+#drawingCanvas:hover {
+    box-shadow: 0 3px 15px rgba(103,178,246, 0.75);
+}
+
+#buttons {
+    display: flex;
+    justify-content: center;
 }

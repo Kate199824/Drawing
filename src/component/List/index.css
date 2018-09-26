@@ -1,0 +1,43 @@
+.list--main {
+    border-radius: 3px;
+    box-shadow: 0 3px 15px rgba(94, 188, 244, 0.4);
+    background-color: white;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 240px;
+    height: 310px;
+}
+
+.list-content {
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+}
+
+.list--title{
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.align-x {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.list--title--point{
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: rgba(78,175,231,0.6);
+    margin-top: 6px;
+    margin-left: 6px;
+    margin-right: 5px;
+}
+
+.list--title--text{
+    font-size: 15px;
+    color: rgba(104,104,104,0.8);
+}

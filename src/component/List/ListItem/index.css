@@ -1,0 +1,25 @@
+.item--main {
+    width: 100%;
+    height: 50px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px solid rgba(94, 188, 244, 0.3);
+}
+
+.align {
+    display: flex;
+    justify-content: center;
+}
+
+.item--text {
+    text-align: center;
+    font-size: 15px;
+    color: rgba(104,104,104,0.8);
+}
+
+.item--main:hover {
+    color: rgba(104,104,104,0.8);
+    box-shadow: 0 1px 1px rgba(94, 188, 244, 0.5);
+}
