@@ -10,8 +10,8 @@
 }
 
 #drawingCanvas{
-    width: 800px;
-    height: 600px;
+    width: 750px;
+    height: 550px;
     box-shadow: 0 3px 15px rgba(103,178,246,0.6);
 }
 #drawingCanvas:hover {

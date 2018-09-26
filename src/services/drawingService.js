@@ -1,9 +1,10 @@
 import request from "../utils/request";
 
-export const uploadDrawing = (points) => {
+export const uploadDrawing = (points, userFilename) => {
     return request(`/upload`, {
         method: "POST",
-        body: {points}
+        body: {"points": points,
+                "userFilename": userFilename}
     })
 };
 
@@ -27,6 +28,12 @@ export const getShapeName = (filename) => {
 
 export const getAllProjects = () => {
     return request(`/all`, {
+        method: "GET",
+    })
+}
+
+export const deleteProject = (filename) => {
+    return request(`/delete/${filename}`, {
         method: "GET",
     })
 }

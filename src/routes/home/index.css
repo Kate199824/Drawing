@@ -2,11 +2,27 @@
     display: flex;
     justify-content: center;
 }
-.home--middle {
+
+.home--left {
+    margin-left: 60px;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 550px;
+}
+
+.home--left--top {
 
 }
+
+.home--left--bottom {
+    margin-top: 20px;
+}
+
+.home--middle {
+    margin-left: 40px;
+    margin-right: 40px;
+}
 .home--right {
-    margin-left: 80px;
     display: flex;
-    flex-direction: column;
+    margin-right: 60px;
 }

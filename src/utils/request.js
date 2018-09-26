@@ -21,7 +21,7 @@ export default async function request(url, options) {
     newOptions.body = JSON.stringify(newOptions.body);
     newOptions.headers = {
         "Content-Type": "application/json; charset=utf-8",
-        username: "xxx",
+        username: encodeURI( localStorage.getItem("username")),
         ...newOptions.headers
     }
 

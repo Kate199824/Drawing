@@ -6,7 +6,7 @@ class List extends Component {
 
     render() {
 
-        const { list=[], onClick } = this.props;
+        const { list=[], onClick, onDelete, currentFile } = this.props;
 
         return (
             <div className={"list--main"}>
@@ -19,7 +19,8 @@ class List extends Component {
                 </div>
                 <div className={"list-content"}>
                     {list.map((item, index) => {
-                        return <ListItem key={list[index]} onClick={onClick} name={list[index]} />;
+                        let chosed = (list[index] === currentFile) ? "chosed" : "";
+                        return <ListItem key={list[index]} onClick={onClick} name={list[index]} onDelete={onDelete} chosed={chosed} />;
                     })}
                 </div>
             </div>

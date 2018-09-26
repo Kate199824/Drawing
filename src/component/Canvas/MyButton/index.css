@@ -4,16 +4,16 @@
 
 .button {
     cursor: pointer;
-    width: 60px;
-    height: 60px;
+    width: 64px;
+    height: 64px;
     border-radius: 50%;
-    margin: 20px;
-    box-shadow: 0 3px 15px rgba(50,50,50,0.2);
-    background-color: rgba(103,178,246,0.07);
+    margin: 25px;
+    box-shadow: 0 3px 15px rgba(103,178,246, 0.4);
+    background-color: rgba(103,178,246,0.35);
 }
 
 .button:hover{
-    box-shadow:  0 3px 15px rgba(50,50,50,0.3);
+    box-shadow:  0 3px 15px rgba(103,178,246,0.6);
 }
 
 .text {
